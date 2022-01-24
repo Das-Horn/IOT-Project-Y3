@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Header from './Components/Header'
+import Header from '../Components/Header'
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="main.css " />
       </Head>
-      <Header ></Header>
+      <Header />
     </div>
   )
 }

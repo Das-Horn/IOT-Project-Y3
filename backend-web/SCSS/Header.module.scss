@@ -5,10 +5,17 @@
     background-color: rgb(70, 199, 113);
     display:flex;
     height:50px;
+    color:#fff;
     width:100%; 
+    justify-content: space-between;
+    
     h1{
-        color:#fff;
         font-size: larger;
         padding-left: 10px;
+    }
+
+    p{
+        font-size: medium;
+        padding-right: 10px;
     }
 }
