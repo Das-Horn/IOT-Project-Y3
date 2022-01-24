@@ -39,6 +39,7 @@ Below the details to join the network as well as IP assignments can be found abo
 
 Store pin graphs and charts here l8r
 
+- [DB Graph](https://app.dbdesigner.net/designer/schema/492615)
   
 
 # References
