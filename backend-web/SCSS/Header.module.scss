@@ -1,3 +1,7 @@
+// Card Variables used to adjust card properties across screen sizes
+$phoneScreen: 768px;
+
+
 .Frame{
     position:absolute;
     top:0;
@@ -8,7 +12,11 @@
     color:#fff;
     width:100%; 
     justify-content: space-between;
-    
+    flex-wrap: nowrap;
+    word-wrap: normal;
+    overflow:hidden;
+    transition: all 0.2s ease-in-out;
+
     h1{
         font-size: larger;
         padding-left: 10px;
@@ -17,5 +25,14 @@
     p{
         font-size: medium;
         padding-right: 10px;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: $phoneScreen) {
+    .Frame{
+        p{
+            display: none;
+        }
     }
 }
