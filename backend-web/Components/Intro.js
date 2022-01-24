@@ -1,10 +1,10 @@
 import React from "react";
-import styles from '../SCSS/Intro.module.scss';
+import styles from '../SCSS/Cards.module.scss';
 
 export default class Intro extends React.Component {
     render() {
         return(
-            <div className={styles.IntroFrame}>
+            <div className={styles.Card}>
                 <p>This is a project that is developed by Craig Doyle, Redas Strumila Jason Leonard and Ben Stobie. This project is a centralized smart home system for monitoring and controling various systems inside of the household. This system is capable of monitoring of:</p>
                 <ul>
                     <li>Tempature</li>
