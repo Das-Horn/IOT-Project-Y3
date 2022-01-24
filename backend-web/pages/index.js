@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Header from '../Components/Header'
+import Intro from '../Components/Intro'
 
 export default function Home() {
   return (
@@ -11,6 +12,9 @@ export default function Home() {
         <script src='scripts.js' />
       </Head>
       <Header />
+      <div className='contents'>
+        <Intro />
+      </div>
     </div>
   )
 }
