@@ -8,6 +8,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="main.css " />
+        <script src='scripts.js' />
       </Head>
       <Header />
     </div>

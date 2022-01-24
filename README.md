@@ -20,3 +20,6 @@ Below the details to join the network as well as IP assignments can be found abo
 
 # Graphs
 Store pin graphs and charts here l8r
+
+# References
+
