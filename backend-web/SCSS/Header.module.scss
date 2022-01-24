@@ -31,6 +31,7 @@ $phoneScreen: 768px;
 
 @media (max-width: $phoneScreen) {
     .Frame{
+        width:105%;
         p{
             display: none;
         }
