@@ -1,11 +1,10 @@
-import {sequelize, DataType, Sequelize} from 'sequelize';
-import { isPrimitive } from 'sequelize/dist/lib/utils';
+import {Sequelize, DataTypes} from 'sequelize';
 
 export default function handler(req,res){
     // DB code init
-    const seq = new Sequelize('' ,'Uname', 'pass' , {
-        // host : , ip
-        // dialect: 'mysql'
+    const seq = new Sequelize(process.env.DB ,process.env.UNAME, process.env.PASS , {
+        host : process.env.IP,          // All these stats are defined in a .env file
+        dialect: 'mysql'
     });
     try{
         await seq.authenticate();
@@ -14,6 +13,32 @@ export default function handler(req,res){
         console.log(`Cannot connect to the database`);
     }
     //Create a model of the table
+    //create different one for each table
+    const MCL = seq.define('MCLists', {      
+        MCKey : {
+            type : DataTypes.INTEGER,
+            primaryKey : true
+        },
+        MCName : {
+            type : DataTypes.STRING
+        },
+        MCIP : {
+            type : DataTypes.STRING
+        }
+    },
+    {
+        timestamps : false
+    }
+    );
+    //sync DB
+    await MCL.sync();
+    const results = await MCL.findAll(); //request query
+    console.log(`[api MCLists] Results requested have been retrieved : \n${JSON.stringify(results)}`);
+    //close connection
+    seq.close();
+
+    res.status(200).json(results); //send results
+
     res.status(200);
 }
 
