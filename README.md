@@ -47,3 +47,4 @@ Store pin graphs and charts here l8r
  - [Next JS Docs](https://nextjs.org/docs)
  - [React Documentation](https://reactjs.org/docs/getting-started.html)
  - [Websocket Info ESP32](https://youtu.be/_Z9Axfh6AEU)
+ - [Sequelize Docs](https://sequelize.org/v7/manual/model-querying-basics.html)
