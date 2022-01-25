@@ -8,3 +8,4 @@
 | Binary | Actions |
 | Float | ?? Light ?? |
 | Boolean | Motion Sensor|
+|--|--|
