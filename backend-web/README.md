@@ -9,3 +9,6 @@
 | Float | ?? Light ?? |
 | Boolean | Motion Sensor|
 |--|--|
+
+## API Data return example
+
