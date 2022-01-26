@@ -59,7 +59,7 @@ Then enter the password above when prompted.
 
   
 
-- ?? Raspberry pi ?? (probs for database purposes)
+- Raspberry pi
 
   
 
