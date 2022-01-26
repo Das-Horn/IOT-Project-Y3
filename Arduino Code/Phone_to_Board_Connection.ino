@@ -1,79 +1,47 @@
-/**
+#define BLYNK_TEMPLATE_ID "TMPLsQNRIqHr"                      // Template name that is used in the Blynk App.
+#define BLYNK_DEVICE_NAME "Quickstart Device"                 // Name of device connected to ESP32.
+#define BLYNK_AUTH_TOKEN "yjk60Mym1MoYJpTYdtUCG6rH3HThYgDF"   // Authentication Token that is provided to us on the Blynk App.
+#define BLYNK_PRINT Serial                                    // Prints out information about the Blynk Process to the Serial Monitor.
 
-  This is a simple demo of sending and receiving some data.
-  Be sure to check out other examples!
- **/
+#include <WiFi.h>               // Includes the "WiFi.h" library.
+#include <WiFiClient.h>         // Includes the "WiFiClient.h" library.
+#include <BlynkSimpleEsp32.h>   // Includes the "BlynkSimpleEsp32.h" library.
 
-// Template ID, Device Name and Auth Token are provided by the Blynk.Cloud
-// See the Device Info tab, or Template settings
-#define BLYNK_TEMPLATE_ID           "TMPLsQNRIqHr"
-#define BLYNK_DEVICE_NAME           "Quickstart Device"
-#define BLYNK_AUTH_TOKEN            "yjk60Mym1MoYJpTYdtUCG6rH3HThYgDF"
+char auth[] = BLYNK_AUTH_TOKEN; // Authentication Token that is provided to us on the Blynk App.
+char ssid[] = "Brr";            // SSID of the current WiFi network the device is connected to.
+char pass[] = "00000000";       // Password of the current WiFi network the device is connected to.
 
+BlynkTimer timer; // Adds a timer to the Blynk Process.
 
-// Comment this out to disable prints and save space
-#define BLYNK_PRINT Serial
-
-
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <BlynkSimpleEsp32.h>
-
-char auth[] = BLYNK_AUTH_TOKEN;
-
-// Your WiFi credentials.
-// Set password to "" for open networks.
-char ssid[] = "Brr";
-char pass[] = "00000000";
-
-BlynkTimer timer;
-
-// This function is called every time the Virtual Pin 0 state changes
-BLYNK_WRITE(V0)
+BLYNK_WRITE(V0)   // This function is called every time the Virtual Pin 0 state changes.
 {
-  // Set incoming value from pin V0 to a variable
-  int value = param.asInt();
-
-  // Update state
-  Blynk.virtualWrite(V1, value);
+  int value = param.asInt();      // Sets incoming value from Virtual Pin 0 to a variable.
+  Blynk.virtualWrite(V1, value);  // Sends data in various formats to Virtual Pin 1.
 }
 
-// This function is called every time the device is connected to the Blynk.Cloud
-BLYNK_CONNECTED()
+BLYNK_CONNECTED() // This function is called every time the device is connected to the Blynk.Cloud
 {
-  // Change Web Link Button message to "Congratulations!"
-  Blynk.setProperty(V3, "offImageUrl", "https://static-image.nyc3.cdn.digitaloceanspaces.com/general/fte/congratulations.png%22");
-  Blynk.setProperty(V3, "onImageUrl",  "https://static-image.nyc3.cdn.digitaloceanspaces.com/general/fte/congratulations_pressed.png%22");
-  Blynk.setProperty(V3, "url", "https://docs.blynk.io/en/getting-started/what-do-i-need-to-blynk/how-quickstart-device-was-made%22");
+  Blynk.setProperty(V3, "offImageUrl", "Congratulations!"); // Changes the offImageUrl.
+  Blynk.setProperty(V3, "onImageUrl", "Congratulations!");  // Changes the onImageUrl.
+  Blynk.setProperty(V3, "url", "Congratulations!");         // Changes the url.
 }
 
-// This function sends Arduino's uptime every second to Virtual Pin 2.
-void myTimerEvent()
+void myTimerEvent() // This function sends Arduino's uptime every second to Virtual Pin 2.
 {
-  // You can send any value at any time.
-  // Please don't send more that 10 values per second.
-  Blynk.virtualWrite(V2, millis() / 1000);
+  Blynk.virtualWrite(V2, millis() / 1000); // Sends Arduino's uptime every 1000ms / every 1 second to Virtual Pin 2.
 }
 
 void setup()
 {
-  // Debug console
-  Serial.begin(115200);
-
-  Blynk.begin(auth, ssid, pass);
-  // You can also specify server:
-  //Blynk.begin(auth, ssid, pass, "blynk.cloud", 80);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
-
-  // Setup a function to be called every second
-  timer.setInterval(1000L, myTimerEvent);
+  Serial.begin(115200);           // See the connection status in the Serial Monitor.
+  Blynk.begin(auth, ssid, pass);  // Connects the Arduino to the Blynk Cloud.
+  // Blynk.begin(auth, ssid, pass, "blynk.cloud", 80);              // Specifying a server.
+  // Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080); // Specifying a server.
+  timer.setInterval(1000L, myTimerEvent); // Setup a function to be called every second.
 }
 
 void loop()
 {
-  Blynk.run();
-  timer.run();
-  // You can inject your own code or combine it with other sketches.
-  // Check other examples on how to communicate with Blynk. Remember
-  // to avoid delay() function!
+  Blynk.run();  // Runs Blynk, super magical stuff.
+  timer.run();  // Runs the Timer, tick tock.
 }
