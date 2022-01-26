@@ -8,22 +8,25 @@ export default async function handler(req,res){
     });
     try{
         await seq.authenticate();
-        console.log('[MCLists] connection established to DB');
+        console.log('[MCEntries] connection established to DB');
     }catch (error){
         console.log(`Cannot connect to the database`);
     }
     //Create a model of the table
     //create different one for each table
-    const MCL = seq.define('MC identities', {      
-        MCKey : {
+    const MCE = seq.define('MCEntries', {      
+        MC : {
             type : DataTypes.INTEGER,
             primaryKey : true
         },
-        MCName : {
-            type : DataTypes.STRING
+        TotalEntries : {
+            type: DataTypes.INTEGER
         },
-        MCIP : {
-            type : DataTypes.STRING
+        LastEntry : {
+            type :DataTypes.TIME
+        },
+        SensorsCount : {
+            type : DataTypes.INTEGER
         }
     },
     {
@@ -31,8 +34,8 @@ export default async function handler(req,res){
     }
     );
     //sync DB
-    const results = await MCL.findAll(); //request query
-    console.log(`[api MCLists] Results requested have been retrieved : \n${JSON.stringify(results)}`);
+    const results = await MCE.findAll(); //request query
+    console.log(`[api MCEntries] Results requested have been retrieved : \n${JSON.stringify(results)}`);
     //close connection
     seq.close();
 
