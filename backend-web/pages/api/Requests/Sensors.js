@@ -1,6 +1,6 @@
 import {Sequelize, DataTypes} from 'sequelize';
 
-export default function handler(req,res){
+export default async function handler(req,res){
     // DB code init
     const seq = new Sequelize(process.env.DB ,process.env.UNAME, process.env.PASS , {
         host : process.env.IP,          // All these stats are defined in a .env file
@@ -14,7 +14,7 @@ export default function handler(req,res){
     }
     //Create a model of the table
     //create different one for each table
-    const ConSen = seq.define('ConnectedSensors', {      
+    const ConSen = seq.define('connected Sensors', {      
         MC : {
             type : DataTypes.INTEGER,
             primaryKey : true
