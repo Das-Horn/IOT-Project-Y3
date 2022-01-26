@@ -8,10 +8,10 @@ SELECT 1,NOW(),0,MCKey
  WHERE MCName = 'TestingSet2'
  LIMIT 1;
 
-INSERT INTO (SensorsCount,LastEntry,TotalEntries,MC)
-SELECT 1,NOW(),0,MCKey
-  FROM `MC identities`
- WHERE MCName = 'TestingSet2'
+INSERT INTO Rooms(Sensors,location,MC)
+SELECT 'Test',1,MCKey
+  FROM `Rooms`
+ WHERE RoomName = 'TestRoom'
  LIMIT 1;
 
 --@block show table column names
