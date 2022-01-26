@@ -4,7 +4,7 @@ export default function handler(req,res){
     // DB code init
     const seq = new Sequelize(process.env.DB ,process.env.UNAME, process.env.PASS , {
         host : process.env.IP,          // All these stats are defined in a .env file
-        dialect: 'mysql'
+        dialect: 'mariadb'
     });
     try{
         await seq.authenticate();
@@ -14,9 +14,10 @@ export default function handler(req,res){
     }
     //Create a model of the table
     //create different one for each table
-    const MCL = seq.define('MCLists', {      
+    const DTE = seq.define('Data', {      
         MC : {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            primaryKey : true
         },
         TotalEntries : {
             type : DataTypes.INTEGER
@@ -30,14 +31,11 @@ export default function handler(req,res){
     }
     );
     //sync DB
-    await MCL.sync();
-    const results = await MCL.findAll(); //request query
+    const results = await DTE.findAll(); //request query
     console.log(`[api MCLists] Results requested have been retrieved : \n${JSON.stringify(results)}`);
     //close connection
     seq.close();
 
     res.status(200).json(results); //send results
-
-    res.status(200);
 }
 
