@@ -29,9 +29,9 @@ Below the details to join the network as well as IP assignments can be found abo
 ## PHPMYADMIN Login and connection Guide
 URL: 10.147.19.13/phpmyadmin
 
-| Username | admin |
+| Username | Password |
 |--|--|
-| Password | Mufcmufc@1 |
+| admin | Mufcmufc@1 |
 
 
 ## Connection Guide to Raspberry Pi
