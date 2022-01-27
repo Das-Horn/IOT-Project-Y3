@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '../Components/Header'
 import Intro from '../Components/Intro'
+import Button from '../Components/Button'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <div className='contents'>
         <Intro />
+        <Button>Testing</Button>
       </div>
     </div>
   )
