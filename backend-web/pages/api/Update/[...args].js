@@ -28,22 +28,25 @@ export default async function handler(req, res) {
 // Create Model (Table) and sync with DB
 
     const Update = seq.define('bintimes', {
-        id : {
-          type : DataTypes.INTEGER,
-          primaryKey : true
+        MC : {
+            type: DataTypes.INTEGER
         },
-        bin_id : {
-          type : DataTypes.INTEGER,
+        DataType: {
+            type: DataTypes.STRING
         },
-        entry_time : {
-          type : DataTypes.TIME
+        Data : {
+            type : DataTypes.BOOLEAN
         },
-        perc_filled : {
-          type : DataTypes.INTEGER
+        TimeStamp : {
+            type : DataTypes.TIME
         },
-        filled : {
-          type : DataTypes.BOOLEAN
+        DataKey : {
+            type : DataTypes.INTEGER,
+            primaryKey : true
         },
+        Room : {
+            type : DataTypes.INTEGER
+        }
     },
     {
       timestamps: false
@@ -59,7 +62,7 @@ export default async function handler(req, res) {
     // await bintimes.apply();
     // await bintimes.sync();
     const results = `${args['args'].join(' | ')}`
-    console.log(`[api gettimes.js] results of POST by user : \n${JSON.stringify(results,null, 2)}`);
+    console.log(`[api Update] results of POST by user : \n${JSON.stringify(results,null, 2)}`);
 // Close connection and send response
     seq.close();
     res.status(200).json(results);
