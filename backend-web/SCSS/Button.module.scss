@@ -1,5 +1,31 @@
 @import './variables.scss';
 
+$greenB : #65ff54;
+$greenD : #3b9131;
+
+$redB : #f75252;
+$redD : #913131;
+
+$height : 50px;
+$width : 150px;
+
 .Button {
-    background-color: green;
+    width:$width;
+    height:$height;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    transition : all $animation-speed ease-in-out;
+}
+
+.ButtonGreen {
+    @extend .Button;
+    background-color: $greenB;
+    box-shadow: 5px 5px $greenD, 2px 2px $greenD, 3px 3px $greenD;
+}
+
+.ButtonRed {
+    @extend .Button;
+    background-color: $redB;
+    box-shadow: 5px 5px $redD, 2px 2px $redD, 3px 3px $redD;
 }

@@ -11,35 +11,16 @@ export default class Button extends React.Component{
     }   
 
     handleClick(){
-        console.log('[Debug] Changing Button State  :  '+this.state.color)
         this.setState(prevState => {
-            this.color = !prevState.color
+            this.state.color = !prevState.color
         });
+        this.forceUpdate();
     }
-
+    
     render(){
-        const gC = '#65ff54';
-        const rC = '#f75252';
-        const gCd = '#3b9131';
-        const rCd = '#913131';
-
-        let color
-        let colorDark
-
-        if(this.state.color == true){
-            color = gC;
-            colorDark = gCd;
-        } else {            
-            color = rC;
-            colorDark = rCd;
-        }
-
-        const BtnStyle = {
-            'background-color' : color,
-            'box-shadow' : 5 + 'px ' + 5 + 'px ' + colorDark
-        }
+        // console.log('[Debug] Changing Button State  :  '+this.state.color);
         return(
-            <button onClick={this.handleClick} className={styles.Button} style={BtnStyle}>
+            <button onClick={this.handleClick} className={this.state.color ? styles.ButtonGreen : styles.ButtonRed}>
                 {this.props.children}
             </button>
         );
