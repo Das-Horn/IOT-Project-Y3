@@ -1,0 +1,107 @@
+CREATE USER 'ben'@'%' IDENTIFIED BY 'bl1ndb0i';
+GRANT ALL PRIVILEGES ON iotProject.* TO 'ben'@'%';
+FLUSH PRIVILEGES;
+
+CREATE USER 'redas'@'%' IDENTIFIED BY 's1gmagr1nd';
+GRANT ALL PRIVILEGES ON iotProject.* TO 'redas'@'%';
+FLUSH PRIVILEGES;
+
+CREATE USER 'jason'@'%' IDENTIFIED BY 'avgI0Susr';
+GRANT ALL PRIVILEGES ON iotProject.* TO 'jason'@'%';
+FLUSH PRIVILEGES;
+
+--@block
+
+GRANT ALL PRIVILEGES ON *.* TO 'ben'@'10.147.19.%';
+
+GRANT ALL PRIVILEGES ON *.* TO 'redas'@'10.147.19.%';
+
+GRANT ALL PRIVILEGES ON *.* TO 'jason'@'10.147.19.%';
+
+GRANT ALL PRIVILEGES ON *.* TO 'craig'@'10.147.19.%';
+FLUSH PRIVILEGES;
+
+--@block show db
+
+SHOW DATABASES
+
+--@block create template
+CREATE TABLE `MC identities` (
+	`MCName` VARCHAR(Na) NOT NULL,
+	`MCKey` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`MCIP` VARCHAR(0.0.0.0) NOT NULL,
+	PRIMARY KEY (`MCKey`)
+);
+
+CREATE TABLE `SensorData` (
+	`MC` INT NOT NULL,
+	`DataType` VARCHAR(255) NOT NULL DEFAULT 'Na',
+	`Data` BINARY NOT NULL DEFAULT '404',
+	`TimeStamp` DATE NOT NULL,
+	`DataKey` INT NOT NULL AUTO_INCREMENT,
+	`Room` INT NOT NULL,
+	PRIMARY KEY (`DataKey`)
+);
+
+CREATE TABLE `MCEntries` (
+	`MC` INT NOT NULL,
+	`TotalEntries` INT NOT NULL DEFAULT '0',
+	`LastEntry` DATE NOT NULL,
+	`SensorsCount` INT NOT NULL DEFAULT '0'
+);
+
+CREATE TABLE `connected Sensors` (
+	`MC` BINARY NOT NULL UNIQUE,
+	`Sensors` VARCHAR(255) NOT NULL DEFAULT 'Na',
+	`SensorID` INT NOT NULL AUTO_INCREMENT,
+	`location` INT NOT NULL,
+	PRIMARY KEY (`SensorID`)
+);
+
+CREATE TABLE `Rooms` (
+	`RoomID` INT NOT NULL AUTO_INCREMENT,
+	`RoomName` VARCHAR(255) NOT NULL DEFAULT 'Na',
+	PRIMARY KEY (`RoomID`)
+);
+
+CREATE TABLE `Jobs` (
+	`JobID` INT NOT NULL AUTO_INCREMENT,
+	`MC` INT NOT NULL,
+	`Action` BOOLEAN NOT NULL DEFAULT '0',
+	`SensorID` INT NOT NULL,
+	PRIMARY KEY (`JobID`)
+);
+
+CREATE TABLE `Login` (
+	`ID` INT NOT NULL AUTO_INCREMENT,
+	`Name` VARCHAR(255),
+	`Password` VARCHAR(255),
+	PRIMARY KEY (`ID`)
+);
+
+ALTER TABLE `SensorData` ADD CONSTRAINT `SensorData_fk0` FOREIGN KEY (`MC`) REFERENCES `MC identities`(`MCKey`);
+
+ALTER TABLE `SensorData` ADD CONSTRAINT `SensorData_fk1` FOREIGN KEY (`Room`) REFERENCES `Rooms`(`RoomID`);
+
+ALTER TABLE `MCEntries` ADD CONSTRAINT `MCEntries_fk0` FOREIGN KEY (`MC`) REFERENCES `MC identities`(`MCKey`);
+
+ALTER TABLE `MCEntries` ADD CONSTRAINT `MCEntries_fk1` FOREIGN KEY (`LastEntry`) REFERENCES `SensorData`(`TimeStamp`);
+
+ALTER TABLE `connected Sensors` ADD CONSTRAINT `connected Sensors_fk0` FOREIGN KEY (`MC`) REFERENCES `MC identities`(`MCKey`);
+
+ALTER TABLE `connected Sensors` ADD CONSTRAINT `connected Sensors_fk1` FOREIGN KEY (`location`) REFERENCES `Rooms`(`RoomID`);
+
+ALTER TABLE `Jobs` ADD CONSTRAINT `Jobs_fk0` FOREIGN KEY (`MC`) REFERENCES `MC identities`(`MCKey`);
+
+ALTER TABLE `Jobs` ADD CONSTRAINT `Jobs_fk1` FOREIGN KEY (`SensorID`) REFERENCES `connected Sensors`(`SensorID`);
+
+
+
+
+
+
+
+
+
+
+
