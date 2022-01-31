@@ -23,3 +23,9 @@ $width : 150px;
     background-color: $redB;
     box-shadow: 5px 5px $redD, 2px 2px $redD, 3px 3px $redD;
 }
+
+.ButtonLoad {
+    @extend .Button;
+    background-color: $greyB;
+    box-shadow: 5px 5px $greyD, 2px 2px $greyD, 3px 3px $greyD;
+}

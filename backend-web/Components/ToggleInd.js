@@ -21,7 +21,6 @@ export default class Tgl extends React.Component {
             (res) => res.json()
         )
         .then((res) => {
-            let data = res;
             console.log(res);
             var resp;
             for (let i = 0 ; i < res.length; i++) {
