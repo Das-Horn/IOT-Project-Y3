@@ -1,8 +1,8 @@
-import styles from '../../styles/Graphs.module.css';
+import styles from '../styles/Graph.module.scss';
 import React from "react";
 import * as d3 from 'd3';
 
-class BinGraph extends React.Component{
+class Graph extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -20,14 +20,14 @@ class BinGraph extends React.Component{
     }
 
     componentDidMount(){
-        d3.json('/api/getName').then( (data) => {
+        d3.json('/api/'+this.props.xTag).then( (data) => {
             console.log(data);
             this.setState({names : data});
             this.wait = false;
         }).catch((any) => {
-
+            console.error(`[Graph component] an error has occurred fetching data.`)
         }).then(() => {
-        d3.json('/api/getTimes').then( (data) => {
+        d3.json('/api/'+this.props.yTag).then( (data) => {
             console.log(data);
             this.setState({data : data});
             this.createGraph();
@@ -87,8 +87,8 @@ class BinGraph extends React.Component{
         // get the data
         let data = this.state.data.slice(Math.max(this.state.data.length - 30, 0));
 
-        // List of bin ids
-        let lists = data.map(a => a.bin_id);
+        // List of Microcontrolllers
+        let lists = data.map(a => a.bin_id); // adapt this once clearer data format determined
         let checker = new Array;
         for (let i = 0; i < lists.length; i++) {
             if(!checker.includes(lists[i])){
@@ -249,4 +249,4 @@ class BinGraph extends React.Component{
       }
 }
 
-export default BinGraph;
+export default Graph;
