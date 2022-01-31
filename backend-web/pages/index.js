@@ -18,9 +18,9 @@ export default function Home() {
         <Intro />
         <Button>Testing</Button>
         <div>
-          <Tgl initState={false}>Testing</Tgl>
-          <Tgl initState={true}>Ben is a big dumb idiot</Tgl>
-          <Tgl>BabaBooey</Tgl>
+          <Tgl sensID={4} api={'Request/jobs'} initState={false}>Testing</Tgl>
+          {/* <Tgl initState={true}>Ben is a big dumb idiot</Tgl> */}
+          {/* <Tgl>BabaBooey</Tgl> */}
         </div>
       </div>
     </div>
