@@ -10,7 +10,22 @@ export default class Tgl extends React.Component {
     }
 
     componentDidMount() {
-        // setInterval();
+        setInterval(this.fetchData, 2000);
+    }
+
+    fetchData() {
+        fetch(`/api/`+ this.props.api != null ? this.props.api : 'Requests/Sensors')
+        .then((res) => {
+            this.setState({
+                tgl : res
+            });
+        })
+        .catch((res) => {
+            console.warn(`[Toggle indicator] Unable to get data from api.`);
+        })
+        .finally( () => {
+            this.forceUpdate();
+        })
     }
 
     render() {
