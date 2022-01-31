@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../Components/Header'
 import Intro from '../Components/Intro'
 import Button from '../Components/Button'
+import Tgl from '../Components/ToggleInd'
 
 export default function Home() {
   return (
@@ -16,6 +17,11 @@ export default function Home() {
       <div className='contents'>
         <Intro />
         <Button>Testing</Button>
+        <div>
+          <Tgl initState={false}>Testing</Tgl>
+          <Tgl initState={true}>Ben is a big dumb idiot</Tgl>
+          <Tgl>BabaBooey</Tgl>
+        </div>
       </div>
     </div>
   )

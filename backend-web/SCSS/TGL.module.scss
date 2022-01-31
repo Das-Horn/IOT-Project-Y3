@@ -1,0 +1,23 @@
+@import './variables.scss';
+
+.Container{
+    margin: 40px;
+    padding : 10px;
+    color: white;
+    border-radius: $tglborder;
+    transition : all $animation-speed ease-in-out;
+    width : max-content;
+    height: max-content;
+}
+
+.Green {
+    @extend .Container;
+    background-color: $greenB;
+    box-shadow: 0px 0px 20px $greenB;
+}
+
+.Red {
+    @extend .Container;
+    background-color: $redB;
+    box-shadow: 0px 0px 20px $redB;
+}
