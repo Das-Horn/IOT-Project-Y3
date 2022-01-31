@@ -14,16 +14,25 @@ export default async function handler(req,res){
     }
     //Create a model of the table
     //create different one for each table
-    const DTE = seq.define('Data', {      
+    const DTE = seq.define('SensorData', {      
         MC : {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER
+        },
+        DataType : {
+            type : DataTypes.STRING
+        },
+        Data : {
+            type : DataTypes.STRING.BINARY
+        },
+        TimeStamp : {
+            type : DataTypes.TIME
+        },
+        DataKey : {
+            type : DataTypes.INTEGER,
             primaryKey : true
         },
-        TotalEntries : {
+        SensorID : {
             type : DataTypes.INTEGER
-        },
-        LastEntry: {
-            type : DataTypes.TIME
         }
     },
     {
