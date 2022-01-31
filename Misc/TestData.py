@@ -9,16 +9,16 @@ mydb = mysql.connector.connect(
   database="iotProject"
 )
 
-i = str(random.randrange(0, 40))
 mycursor = mydb.cursor()
 
 sql = "INSERT INTO SensorData (MC, DataType, Data , SensorID) VALUES (%s, %s, %s, %s)"
+
 while True:
+    i = str(random.randrange(0, 40))
     val = ("1", "Temp", i, "1")
     mycursor.execute(sql, val)
     time.sleep(1)
+    mydb.commit()
 
-mydb.commit()
-
-print(mycursor.rowcount, "record inserted.")
-print("ID:", mycursor.lastrowid)
+    print(mycursor.rowcount, "record inserted.")
+    print("ID:", mycursor.lastrowid)
