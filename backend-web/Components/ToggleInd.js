@@ -21,12 +21,11 @@ export default class Tgl extends React.Component {
             (res) => res.json()
         )
         .then((res) => {
-            console.log(res);
+            // console.log(res);
             var resp;
             for (let i = 0 ; i < res.length; i++) {
-                console.log(i)
+                // console.log(i)
                 if(res[i]['SensorID'] == this.state.sensID){
-                    console.log(`debug Action = ${res[i].Action}`)
                     resp = res[i]['Action'] == 1 ? true : false;
                 }
             }

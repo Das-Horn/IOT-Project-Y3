@@ -13,6 +13,24 @@ export default class Button extends React.Component{
         this.updateDB = this.updateDB.bind(this);
     }   
 
+    componentDidMount(){ //Checks state of sensor and release button of loading state
+        fetch('/api/Requests/jobs')
+        .then( (res) => res.json() )
+        .then(
+            (res) => {
+                for (let i = 0; i < res.length; i++) {
+                    if(res[i]['SensorID'] == this.state.sensID){
+                        this.setState((prevState) => {
+                            this.state.color = res[i]['Action'];
+                            this.state.loaded = true;
+                        })
+                    }
+                }
+                this.forceUpdate();
+            }
+        )
+    }
+
     handleClick(){
         if(this.state.loaded){
             this.updateDB();
