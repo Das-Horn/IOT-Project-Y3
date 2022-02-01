@@ -6,11 +6,12 @@ export default async function handler(req, res) {
     // Code to get the api variables from the link
     var args = req.query;
 
-    if(args['args'].length < 1){
+    if(args['args'].length != 4){
         console.log("Invalid variable amount");
         res.status(205).json('{"error" : "incorrect amount of arguments"}');
         return
     }
+    console.log(`[Debugging] link Variables : ${args['args']}`)
     // Connect to DB and test connection
     const seq = new Sequelize(process.env.DB ,process.env.UNAME, process.env.PASS , {
         host : process.env.IP,          // All these stats are defined in a .env file
@@ -24,7 +25,7 @@ export default async function handler(req, res) {
     }
     // Create Model (Table) and syn with DBc
 
-    const Update = seq.define('bintimes', {
+    const DataDB = seq.define('SensorData', {
         MC : {
             type: DataTypes.INTEGER
         },
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
             type: DataTypes.STRING
         },
         Data : {
-            type : DataTypes.BOOLEAN
+            type : DataTypes.STRING
         },
         TimeStamp : {
             type : DataTypes.TIME
@@ -50,13 +51,18 @@ export default async function handler(req, res) {
     }
     );
     // try to create a database entry
+    //Link format:
+    // localhost/api/Update/Data/MC/DataType/Data/SensorID
     try {
-        await Update.create({
-    
+        await DataDB.create({
+            MC : parseInt(args['args'][0]),
+            DataType : args['args'][1],
+            Data : args['args'][2],
+            SensorID : parseInt(args['args'][3]),
         });
     } catch (error) {
         console.log(`[Update] error adding entry to database`);
-        res.status(205).json({OOPS : error});
+        res.status(205).json({'OOPS' : error});
         return;
     }
     const results = `${args['args'].join(' | ')}`

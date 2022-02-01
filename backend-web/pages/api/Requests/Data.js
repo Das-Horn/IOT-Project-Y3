@@ -22,7 +22,7 @@ export default async function handler(req,res){
             type : DataTypes.STRING
         },
         Data : {
-            type : DataTypes.STRING.BINARY
+            type : DataTypes.STRING
         },
         TimeStamp : {
             type : DataTypes.TIME
