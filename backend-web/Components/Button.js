@@ -11,6 +11,7 @@ export default class Button extends React.Component{
         }
         this.handleClick = this.handleClick.bind(this);
         this.updateDB = this.updateDB.bind(this);
+        this.changeState = this.changeState.bind(this);
     }   
 
     componentDidMount(){ //Checks state of sensor and release button of loading state
@@ -20,6 +21,7 @@ export default class Button extends React.Component{
             (res) => {
                 for (let i = 0; i < res.length; i++) {
                     if(res[i]['SensorID'] == this.state.sensID){
+                        console.log(`${res[i]['Action']} || ${this.props.sensID}`);
                         this.setState((prevState) => {
                             this.state.color = res[i]['Action'];
                             this.state.loaded = true;
@@ -34,19 +36,25 @@ export default class Button extends React.Component{
     handleClick(){
         if(this.state.loaded){
             this.updateDB();
-            this.setState(prevState => {
-                this.state.color = !prevState.color
-            });
-            this.forceUpdate();
         }
     }
     
+    changeState() {
+    }
+
     updateDB(){
-        fetch('/api/Request/jobs').then(
-            (res) => res.json()
-        ).then( (res) => {
-            
+        fetch(`/api/Update/${this.props.apiName != null ? this.props.apiName : 'jobs'}/${this.state.sensID}/${!this.state.color == true ? '1' : '0'}`)
+        .then( (res) => {
+            this.setState(prevState => {
+                this.state.color = !prevState.color;
+            });
+            this.forceUpdate();
         })
+        .catch(
+            (err) => {
+                console.warn(err)
+            }
+        )
     }
 
     render(){
