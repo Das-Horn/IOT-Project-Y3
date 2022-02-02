@@ -1,8 +1,8 @@
 {
-    "name": "Next.JS Progressive Web App",
-    "short_name": "Next PWA",
-    "theme_color": "#ffffff",
-    "background_color": "#004740",
+    "name": "Smart Systems Home",
+    "short_name": "SSH",
+    "theme_color": "#61A6AB",
+    "background_color": "#61A6AB",
     "display": "fullscreen",
     "orientation": "portrait",
     "scope": "/",
