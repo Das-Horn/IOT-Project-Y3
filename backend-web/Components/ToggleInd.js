@@ -6,7 +6,8 @@ export default class Tgl extends React.Component {
         super(props);
         this.state = {
             tgl : this.props.initState != null ? this.props.initState : false,
-            sensID : this.props.sensID != null ? this.props.sensID : 1
+            sensID : this.props.sensID != null ? this.props.sensID : 1,
+            loaded : false
         }
         this.fetchData = this.fetchData.bind(this);
     }

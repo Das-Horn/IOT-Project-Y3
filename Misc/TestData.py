@@ -17,7 +17,7 @@ while True:
     i = str(random.randrange(0, 40))
     val = ("1", "Temp", i, "1")
     mycursor.execute(sql, val)
-    time.sleep(1)
+    time.sleep(10)
     mydb.commit()
 
     print(mycursor.rowcount, "record inserted.")

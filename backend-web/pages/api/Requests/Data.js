@@ -22,7 +22,7 @@ export default async function handler(req,res){
             type : DataTypes.STRING
         },
         Data : {
-            type : DataTypes.STRING.BINARY
+            type : DataTypes.STRING
         },
         TimeStamp : {
             type : DataTypes.TIME
@@ -40,11 +40,10 @@ export default async function handler(req,res){
     }
     );
     //sync DB
-    const results = await DTE.findAll(); //request query
-    console.log(`[api MCLists] Results requested have been retrieved : \n${JSON.stringify(results)}`);
+    const results = await DTE.findAndCountAll({limit:100, offset: 0}); //request query
+    console.log(`[api MCLists] Results requested have been retrieved :`);
     //close connection
     seq.close();
-
-    res.status(200).json(results); //send results
+    res.status(200).json(results["rows"]); //send results
 }
 

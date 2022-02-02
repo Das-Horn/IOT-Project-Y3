@@ -7,7 +7,7 @@
     display: flex;
     position: absolute;
     width: 100%;
-    height: calc(100% - 50px);
+    height: max-content;
     top: 50px;
     left: 0;
     flex-direction: column;
