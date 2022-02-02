@@ -3,7 +3,7 @@
     "short_name": "SSH",
     "theme_color": "#61A6AB",
     "background_color": "#61A6AB",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
