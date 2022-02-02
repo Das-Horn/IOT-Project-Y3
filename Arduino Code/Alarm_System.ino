@@ -40,23 +40,23 @@ void loop()                 // Start of the void loop().
 {
   if((wifiMulti.run() == WL_CONNECTED)) // If statement for when the ESP32 has successfully connected.
   {
-    Serial.print("[LOCAL] Connection established \n");  // Prints off that the ESP32 has established a connection.
+    Serial.print("[LOCAL] Connection established \n");            // Prints off that the ESP32 has established a connection.
     String url = "http://192.168.43.149:3000/api/Requests/jobs";  // This is the URL of our database which the ESP32 wants to connect to.
-    Serial.print("[LOCAL] Attempting connection to DB... \n");  // Prints off that the ESP32 is attempting connection to the database.
+    Serial.print("[LOCAL] Attempting connection to DB... \n");    // Prints off that the ESP32 is attempting connection to the database.
     HTTPClient http;
     http.begin(url);            // Begins the HTTP protocol.
     int httpCode = http.GET();  // Requests data from the database.
     if(httpCode > 0)            // If statement for when the data given back from the database is set to 0.
     {
       Serial.printf("[HTTP] GET... code: %d\n", httpCode);  // Prints out the HTTP Code number, should be 200.
-      if(httpCode == HTTP_CODE_OK)  // If statement for when the HTTP Code number is ok.
+      if(httpCode == HTTP_CODE_OK)                          // If statement for when the HTTP Code number is ok.
       {
-        String inData = http.getString();
-        DynamicJsonDocument doc(1023);
-        DeserializationError error = deserializeJson(doc, inData);
-        if (doc[0]["Action"] == true)
+        String inData = http.getString(); // The string inData is equal to the function gttp.getString();.
+        DynamicJsonDocument doc(1023);    // DynamicJsonDocument is a JsonDocument that allocates its memory pool in the heap.
+        DeserializationError error = deserializeJson(doc, inData);  // A DeserializationError is an enumerated type that will show an error of deserializeJson().
+        if (doc[0]["Action"] == true)     // If statement for when the action is true.
         {
-          activeSec = true;
+          activeSec = true;                               // Sets active security to true/enabled.
           Serial.print("[LOCAL] Security is active \n");  // Prints out that the Security has been turned on.
         }
         else  // Else statement for when the Security is turned off.
