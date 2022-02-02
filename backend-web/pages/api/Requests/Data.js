@@ -41,10 +41,13 @@ export default async function handler(req,res){
     );
     //sync DB
     const results = await DTE.findAll(); //request query
-    console.log(`[api MCLists] Results requested have been retrieved : \n${JSON.stringify(results)}`);
+    console.log(`[api MCLists] Results requested have been retrieved :`);
+    let Temp = [];
     //close connection
     seq.close();
-
-    res.status(200).json(results); //send results
+    for (let i = 0; i < 100; i++) {
+        Temp.push(results[i]);
+    }
+    res.status(200).json(Temp); //send results
 }
 

@@ -3,6 +3,7 @@ import Header from '../Components/Header'
 import Intro from '../Components/Intro'
 import Button from '../Components/Button'
 import Tgl from '../Components/ToggleInd'
+import Graph from '../Components/Graph'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           {/* <Tgl initState={true}>Ben is a big dumb idiot</Tgl> */}
           {/* <Tgl>BabaBooey</Tgl> */}
         </div>
+        <Graph xTag={"Requests/Data"} MCDat={"Requests/Data"} />
       </div>
     </div>
   )
