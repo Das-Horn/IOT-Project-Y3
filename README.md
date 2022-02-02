@@ -88,7 +88,9 @@ Store pin graphs and charts here l8r
 
 -  [DB Graph](https://app.dbdesigner.net/designer/schema/492615)
 
-  
+# Messing
+
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 # References
 
