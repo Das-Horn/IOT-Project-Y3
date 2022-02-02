@@ -14,6 +14,7 @@ export default function Home() {
         <link rel="stylesheet" type="text/css" href="main.css " />
         <link rel="manifest" href="/manifest.json" />
         <meta name='theme-color' content='#61A6AB'/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         <script src='scripts.js' />
       </Head>
       <Header />
