@@ -4,6 +4,8 @@
 #include <WiFiMulti.h>            // Includes the WiFiMulti.h Library. https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFiMulti.h
 #include <HTTPClient.h>           // Includes the HTTPClient.h Library. https://github.com/espressif/arduino-esp32/blob/master/libraries/HTTPClient/src/HTTPClient.h
 
+// PIR Sensor Pins from left to right, (1) 5 Volt, (2) Data, (3) Ground.
+
 WiFiMulti wifiMulti;
 
 char ssid[] = "XD";               // SSID of the current WiFi network the device is connected to.
@@ -12,7 +14,7 @@ char server[] = "192.168.43.149"; // Sets the Server IP Address to that of the d
 
 int buzzer = 5;             // Pin for buzzer.
 int led = 4;                // Pin for led.
-int inputPin = 2;           // Pin for PIR Sensor (KEEP AT PIN 2, PIN 4 DOES NOT WORK, I REPEAT DOES NOT WORK).
+int inputPin = 4;           // Pin for PIR Sensor (KEEP AT PIN 4, PIN 2 DOES NOT WORK, I REPEAT DOES NOT WORK).
 boolean pirState = LOW;     // Sets the state of the PIR Sensor to Low.
 int value = 0;              // Variable for reading the pin status.
 int serialData = 0;         // Sets the serial data to 0.
