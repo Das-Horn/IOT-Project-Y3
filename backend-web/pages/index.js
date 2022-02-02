@@ -23,7 +23,7 @@ export default function Home() {
           {/* <Tgl initState={true}>Ben is a big dumb idiot</Tgl> */}
           {/* <Tgl>BabaBooey</Tgl> */}
         </div>
-        <Graph xTag={"Requests/Data"} MCDat={"Requests/Data"} />
+        {/* <Graph xTag={"Requests/Data"} MCDat={"Requests/MCList"} /> */}
       </div>
     </div>
   )

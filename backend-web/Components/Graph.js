@@ -32,8 +32,8 @@ class Graph extends React.Component{
         })});
         setInterval(() => {
             this.getData();
-        }, 10000);
-        // Listen to the slider?
+        }, this.props.interval != null ? this.props.interval : 10000); //Allow Adjustmant per graph with a default value
+        // Listen to the selector
         d3.select("#selectButton").on("change", (d) => {
             let selectedGroup = document.querySelector('#selectButton').value
             this.updateChart(selectedGroup)
@@ -103,7 +103,7 @@ class Graph extends React.Component{
             let final;
             if(this.state.names != null){
                 for (let i = 0; i < this.state.names.length; i++) {
-                    if(this.state.names[i].id == d){
+                    if(this.state.names[i].MCKey == d){
                         final = this.state.names[i].MCName;
                         break;
                     }
@@ -152,55 +152,55 @@ class Graph extends React.Component{
             .style("stroke-width", 4)
             .style("fill", "none");
 
-            // code for mouse over stats
-              // Create the circle that travels along the curve of chart
-            this.focus = svg
-            .append('g')
-            .append('circle')
-                .style("fill", "none")
-                .attr("stroke", "black")
-                .attr('r', 8.5)
-                .style("opacity", 0);
+            // // code for mouse over stats                                                         Planned Removal soon
+            //   // Create the circle that travels along the curve of chart
+            // this.focus = svg
+            // .append('g')
+            // .append('circle')
+            //     .style("fill", "none")
+            //     .attr("stroke", "black")
+            //     .attr('r', 8.5)
+            //     .style("opacity", 0);
 
-            // Create the text that travels along the curve of chart
-            this.focusText = svg
-            .append('g')
-            .append('text')
-                .style("opacity", 0)
-                .attr("text-anchor", "left")
-                .attr("alignment-baseline", "middle");
+            // // Create the text that travels along the curve of chart
+            // this.focusText = svg
+            // .append('g')
+            // .append('text')
+            //     .style("opacity", 0)
+            //     .attr("text-anchor", "left")
+            //     .attr("alignment-baseline", "middle");
 
-            svg
-            .append('rect')
-            .style("fill", "none")
-            .style("pointer-events", "all")
-            .attr('width', width)
-            .attr('height', height)
-            .on('mouseover', () => {
-                this.focus.style("opacity", 1);
-                this.focusText.style("opacity",1);
-            })
-            .on('mousemove', (Event, d) => {  //Fixed mouseover thingy needed to declare event (╯°□°）╯︵ ┻━┻
-                let data = this.state.data
-                // recover coordinate we need
-                var x0 = this.x.invert(d3.pointer(Event)[0]);
-                // var x0 = this.x(d3.pointer(Event)[0]);
-                var i = d3.bisect(data, x0);
-                var selectedData = data[i]
-                // console.log(`Debug Data for mousemove:\nx0: ${x0}\ni: ${i}\ndata : ${data}\n selectedData : ${selectedData}`)
-                console.log(`getMinute : ${this.getMinute(selectedData.TimeStamp)} TimeStamp : ${selectedData.TimeStamp} x0 : ${x0}`)
-                this.focus
-                  .attr("cx", this.x(selectedData.TimeStamp))
-                  .attr("cy", this.y(selectedData.Data))
-                this.focusText
-                  .html("Filled:" + selectedData.TimeStamp + "\n" + "Tempature:" + selectedData.Data)
-                  .attr("x", this.x(selectedData.TimeStamp)+15)
-                  .attr("y", this.y(selectedData.Data))
-            })
-            .on('mouseout', () => {
-                this.focus.style("opacity", 0)
-                this.focusText.style("opacity", 0)
-            });
+            // svg
+            // .append('rect')
+            // .style("fill", "none")
+            // .style("pointer-events", "all")
+            // .attr('width', width)
+            // .attr('height', height)
+            // .on('mouseover', () => {
+            //     this.focus.style("opacity", 1);
+            //     this.focusText.style("opacity",1);
+            // })
+            // .on('mousemove', (Event, d) => {  //Fixed mouseover thingy needed to declare event (╯°□°）╯︵ ┻━┻
+            //     let data = this.state.data
+            //     // recover coordinate we need
+            //     var x0 = this.x.invert(d3.pointer(Event)[0]);
+            //     // var x0 = this.x(d3.pointer(Event)[0]);
+            //     var i = d3.bisect(data, x0);
+            //     var selectedData = data[i]
+            //     // console.log(`Debug Data for mousemove:\nx0: ${x0}\ni: ${i}\ndata : ${data}\n selectedData : ${selectedData}`)
+            //     console.log(`getMinute : ${this.getMinute(selectedData.TimeStamp)} TimeStamp : ${selectedData.TimeStamp} x0 : ${x0}`)
+            //     this.focus
+            //       .attr("cx", this.x(selectedData.TimeStamp))
+            //       .attr("cy", this.y(selectedData.Data))
+            //     this.focusText
+            //       .html("Filled:" + selectedData.TimeStamp + "\n" + "Tempature:" + selectedData.Data)   // I dont see how this works when involving Time might remove in future .·´¯`(>▂<)´¯`·. 
+            //       .attr("x", this.x(selectedData.TimeStamp)+15)
+            //       .attr("y", this.y(selectedData.Data))
+            // })
+            // .on('mouseout', () => {
+            //     this.focus.style("opacity", 0)
+            //     this.focusText.style("opacity", 0)
+            // });
     }
 
       //updating the graph
