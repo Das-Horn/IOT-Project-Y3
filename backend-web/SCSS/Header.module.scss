@@ -29,6 +29,11 @@
     }
 }
 
+.IconCont {
+    width: 45px;
+    height : 45px;
+}
+
 @media (max-width: $phoneScreen) {
     .Frame{
         width:105%;

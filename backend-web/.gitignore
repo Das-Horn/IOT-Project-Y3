@@ -33,5 +33,5 @@ yarn-error.log*
 #PWA compiled files
 
 sw.*
-
+fallback-*
 workbox-*
