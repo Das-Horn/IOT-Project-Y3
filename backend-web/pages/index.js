@@ -12,6 +12,8 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="main.css " />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name='theme-color' content='#61A6AB'/>
         <script src='scripts.js' />
       </Head>
       <Header />

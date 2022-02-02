@@ -9,9 +9,9 @@
     "start_url": "/",
     "icons": [
       {
-        "src": "favicon.ico",
-        "sizes": "72x72",
-        "type": "icon/ico"
+        "src": "/icons/icon_512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
       }
     ],
     "splash_pages": null
