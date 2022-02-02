@@ -45,7 +45,7 @@ class Graph extends React.Component{
             this.setState({names : data});
             this.wait = false;
         }).catch((any) => {
-
+            console.log(any)
         }).then(() => {
         d3.json('/api/'+this.props.xTag).then( (data) => {
             this.setState({data : data});
@@ -184,16 +184,17 @@ class Graph extends React.Component{
                 let data = this.state.data
                 // recover coordinate we need
                 var x0 = this.x.invert(d3.pointer(Event)[0]);
-                var i = d3.bisect(data, x0, 1);
+                // var x0 = this.x(d3.pointer(Event)[0]);
+                var i = d3.bisect(data, x0);
                 var selectedData = data[i]
                 // console.log(`Debug Data for mousemove:\nx0: ${x0}\ni: ${i}\ndata : ${data}\n selectedData : ${selectedData}`)
-                console.log(this.getMinute(selectedData.TimeStamp))
+                console.log(`getMinute : ${this.getMinute(selectedData.TimeStamp)} TimeStamp : ${selectedData.TimeStamp} x0 : ${x0}`)
                 this.focus
-                  .attr("cx", this.x(this.getMinute(selectedData.TimeStamp)))
+                  .attr("cx", this.x(selectedData.TimeStamp))
                   .attr("cy", this.y(selectedData.Data))
                 this.focusText
                   .html("Filled:" + selectedData.TimeStamp + "\n" + "Tempature:" + selectedData.Data)
-                  .attr("x", this.x(this.getMinute(selectedData.TimeStamp))+15)
+                  .attr("x", this.x(selectedData.TimeStamp)+15)
                   .attr("y", this.y(selectedData.Data))
             })
             .on('mouseout', () => {

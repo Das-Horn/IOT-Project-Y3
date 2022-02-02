@@ -40,14 +40,10 @@ export default async function handler(req,res){
     }
     );
     //sync DB
-    const results = await DTE.findAll(); //request query
+    const results = await DTE.findAndCountAll({limit:100, offset: 0}); //request query
     console.log(`[api MCLists] Results requested have been retrieved :`);
-    let Temp = [];
     //close connection
     seq.close();
-    for (let i = 0; i < 100; i++) {
-        Temp.push(results[i]);
-    }
-    res.status(200).json(Temp); //send results
+    res.status(200).json(results["rows"]); //send results
 }
 

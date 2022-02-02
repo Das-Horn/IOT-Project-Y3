@@ -17,9 +17,9 @@ export default function Home() {
       <Header />
       <div className='contents'>
         <Intro />
-        <Button sensID={4}>Testing</Button>
+        <Button sensID={4}>Security System</Button>
         <div>
-          <Tgl sensID={4} api={'Request/jobs'} initState={false}>Testing</Tgl>
+          <Tgl sensID={4} api={'Request/jobs'} initState={false}>Security System</Tgl>
           {/* <Tgl initState={true}>Ben is a big dumb idiot</Tgl> */}
           {/* <Tgl>BabaBooey</Tgl> */}
         </div>
