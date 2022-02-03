@@ -18,7 +18,7 @@ export default class Login extends React.Component{
         fetch(`/api/Login/${UName}/${Pass}`)
         .then(
             (res) => {
-
+                console.log(res);
             }
         )
     }
