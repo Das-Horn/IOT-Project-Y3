@@ -18,7 +18,7 @@
     background-color: #fff;
     width: 500px;
     height: 600px;
-    box-shadow: 0 0 30px #6d6d6d;
+    box-shadow: 0 0 30px #3f3f3f;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -27,13 +27,47 @@
     justify-content: space-evenly;
     align-items: center;
     input {
+        transition: all 0.2s ease-in;
         border:none;
         border-bottom: solid 2px;
         width: 70%;
         font-size: larger;
+        outline: none;
+        // caret-color: transparent;
+    }
+    input:focus-visible{
+        border-color: $greenB;
     }
     button{
         border:none;
         background-color: $greenB;
+        padding: 5px 15px;
+        border-radius: 3px;
+        transition: all 0.2s ease-in-out;
+        width: max-content;
+        height : max-content;
+        color: #fff;
+        font-size: 20px;
+        box-shadow: 1px 1px 0px $greenD, 2px 2px 0px $greenD, 3px 3px 0px $greenD, 4px 4px 0px $greenD, 5px 5px 0px $greenD;
+    }
+    button:active {
+        background-color: $redB;
+        box-shadow: 1px 1px 0px $redD, 2px 2px 0px $redD, 3px 3px 0px $redD;
+        transform: translate(2px,2px);
+    }
+    p{
+        color: $redB;
+        font-size: large;
+    }
+}
+
+@media (max-width : $phoneScreen) {
+    .LoginCont {
+        width:100%;
+        height:100%;
+        border-radius: 0;
+        button{
+            padding: 10px 25px;
+        }
     }
 }

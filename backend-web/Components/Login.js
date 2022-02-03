@@ -15,8 +15,8 @@ export default class Login extends React.Component{
                 <div className={styles.LoginCont}>
                     <h1>Login</h1>
                     <input id="UName" placeholder="Username"></input>
-                    <input id="Pass" placeholder="password"></input>
-                    {this.state.error != null ? <p>this.state.error</p> : ''}
+                    <input id="Pass" placeholder="Password"></input>
+                    {this.state.error != null ? <p>{this.state.error}</p> : ''}
                     <button>Submit</button>
                 </div>    
             </div>
