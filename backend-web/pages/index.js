@@ -4,6 +4,7 @@ import Intro from '../Components/Intro'
 import Button from '../Components/Button'
 import Tgl from '../Components/ToggleInd'
 import Graph from '../Components/Graph'
+import Login from '../Components/Login'
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
         </div>
         {/* <Graph xTag={"Requests/Data"} MCDat={"Requests/MCList"} /> */}
       </div>
+      <Login />
     </div>
   )
 }
