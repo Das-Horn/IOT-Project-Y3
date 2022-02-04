@@ -18,7 +18,15 @@ export default class Login extends React.Component{
         fetch(`/api/Login/${UName}/${Pass}`)
         .then(
             (res) => {
-                console.log(`Status Code : ${res.status} , Data : ${JSON.stringify(res.body)}`)
+                if(res.status == 200){
+                    this.setState({
+                        LoggedIn : true
+                    });
+                }else if(res.status == 500){
+                    this.setState({
+                        error : res.body['error']
+                    });
+                }
             }
         )
     }
