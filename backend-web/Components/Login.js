@@ -6,7 +6,7 @@ export default class Login extends React.Component{
         super(props);
         this.state = {
             error : null,
-            LoggedIn : false
+            LoggedIn : true
         }
         this.handleClick = this.handleClick.bind(this);
     }
