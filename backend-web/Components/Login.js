@@ -15,20 +15,26 @@ export default class Login extends React.Component{
         const UName = document.querySelector('#UName').value;
         const Pass = document.querySelector('#Pass').value;
 
-        fetch(`/api/Login/${UName}/${Pass}`)
-        .then(
-            (res) => {
-                if(res.status == 200){
-                    this.setState({
-                        LoggedIn : true
-                    });
-                }else if(res.status == 500){
-                    this.setState({
-                        error : res.body['error']
-                    });
+        if(UName == '' || Pass == ''){
+            this.setState({
+                error : "Please enter valid values."
+            });
+        }else{
+            fetch(`/api/Login/${UName}/${Pass}`)
+            .then(
+                (res) => {
+                    if(res.status == 200){
+                        this.setState({
+                            LoggedIn : true
+                        });
+                    }else if(res.status == 500){
+                        this.setState({
+                            error : res.body['error']
+                        });
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     render(){
