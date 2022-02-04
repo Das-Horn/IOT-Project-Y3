@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Jobs {
+  JobID             Int               @id @default(autoincrement())
+  MC                Int
+  Action            Boolean
+  SensorID          Int               @unique(map: "SensorID")
+  MC_identities     MC_identities     @relation(fields: [MC], references: [MCKey], onUpdate: Restrict, map: "Jobs_fk0")
+  connected_Sensors connected_Sensors @relation(fields: [SensorID], references: [SensorID], onUpdate: Restrict, map: "Jobs_fk1")
+
+  @@index([MC], map: "Jobs_fk0")
+}
+
+model Logins {
+  ID       Int    @id @default(autoincrement())
+  Name     String @db.VarChar(255)
+  Password String @db.VarChar(255)
+}
+
+model MC_identities {
+  MCName            String              @unique(map: "MCName_2") @db.VarChar(255)
+  MCKey             Int                 @id @unique(map: "MCKey") @default(autoincrement())
+  MCIP              String              @unique(map: "MCIP") @db.VarChar(255)
+  Jobs              Jobs[]
+  MCEntries         MCEntries[]         @relation("MC_identitiesToMCEntries") @ignore
+  SensorData        SensorData[]
+  connected_Sensors connected_Sensors[]
+
+  @@index([MCName], map: "MCName")
+  @@map("MC identities")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model MCEntries {
+  MC            Int
+  TotalEntries  Int           @default(0)
+  LastEntry     DateTime      @default(now()) @db.Time(0)
+  SensorsCount  Int           @default(0)
+  MC_identities MC_identities @relation("MC_identitiesToMCEntries", fields: [MC], references: [MCKey], onUpdate: Restrict, map: "MCEntries_fk0")
+
+  @@index([MC], map: "MCEntries_fk0")
+  @@ignore
+}
+
+model Rooms {
+  RoomID            Int                 @id @default(autoincrement())
+  RoomName          String              @db.VarChar(255)
+  connected_Sensors connected_Sensors[]
+}
+
+model SensorData {
+  MC                Int
+  DataType          String            @default("None") @db.VarChar(255)
+  Data              String            @db.Text
+  TimeStamp         DateTime          @default(now()) @db.DateTime(0)
+  DataKey           Int               @id @default(autoincrement())
+  SensorID          Int
+  MC_identities     MC_identities     @relation(fields: [MC], references: [MCKey], onUpdate: Restrict, map: "SensorData_fk0")
+  connected_Sensors connected_Sensors @relation(fields: [SensorID], references: [SensorID], onUpdate: Restrict, map: "SensorData_fk1")
+
+  @@index([MC], map: "SensorData_fk0")
+  @@index([SensorID], map: "SensorData_fk1")
+}
+
+model connected_Sensors {
+  MC            Int
+  Sensors       String        @db.VarChar(255)
+  SensorID      Int           @id @unique(map: "SensorID") @default(autoincrement())
+  location      Int
+  MC_identities MC_identities @relation(fields: [MC], references: [MCKey], onUpdate: Restrict, map: "connected Sensors_fk0")
+  Rooms         Rooms         @relation(fields: [location], references: [RoomID], onUpdate: Restrict, map: "connected Sensors_fk1")
+  Jobs          Jobs?
+  SensorData    SensorData[]
+
+  @@index([MC], map: "MC_2")
+  @@index([MC], map: "MC_3")
+  @@index([MC], map: "MC_4")
+  @@index([location], map: "connected Sensors_fk1")
+  @@map("connected Sensors")
+}
