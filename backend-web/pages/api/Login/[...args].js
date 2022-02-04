@@ -4,7 +4,7 @@ export default async function handler(req,res){
     // DB code init
     const seq = new Sequelize(process.env.DB ,process.env.UNAME, process.env.PASS , {
         host : process.env.IP,          // All these stats are defined in a .env file
-        dialect: 'mariadb'
+        dialect: require('mariadb')
     });
     try{
         await seq.authenticate();
