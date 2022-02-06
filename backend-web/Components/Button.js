@@ -16,7 +16,7 @@ export default class Button extends React.Component{
 
     componentDidMount(){ //Checks state of sensor and release button of loading state
         this.FetchData();
-        setInterval(this.FetchData, 1000);
+        setInterval(this.FetchData, 5000);
     }
 
     FetchData() {

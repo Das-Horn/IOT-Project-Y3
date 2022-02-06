@@ -16,17 +16,33 @@ $width : 150px;
 .ButtonGreen {
     @extend .Button;
     background-color: $greenB;
-    box-shadow: 5px 5px $greenD, 2px 2px $greenD, 3px 3px $greenD;
+    box-shadow: 1px 1px 0px $greenD, 2px 2px 0px $greenD, 3px 3px 0px $greenD, 4px 4px 0px $greenD, 5px 5px 0px $greenD;
 }
 
 .ButtonRed {
     @extend .Button;
     background-color: $redB;
-    box-shadow: 5px 5px $redD, 2px 2px $redD, 3px 3px $redD;
+    box-shadow: 1px 1px 0px $redD, 2px 2px 0px $redD, 3px 3px 0px $redD, 4px 4px 0px $redD, 5px 5px 0px $redD;
 }
 
 .ButtonLoad {
     @extend .Button;
     background-color: $greyB;
-    box-shadow: 5px 5px $greyD, 2px 2px $greyD, 3px 3px $greyD;
+    box-shadow: 1px 1px 0px $greyD, 2px 2px 0px $greyD, 3px 3px 0px $greyD, 4px 4px 0px $greyD, 5px 5px 0px $greyD;
+}
+
+.Button:active {
+    transform: translate(2px,2px);
+}
+
+.ButtonGreen:active{
+    box-shadow: 1px 1px 0px $greenD, 2px 2px 0px $greenD, 3px 3px 0px $greenD;
+}
+
+.ButtonRed:active {
+    box-shadow: 1px 1px 0px $redD, 2px 2px 0px $redD, 3px 3px 0px $redD;
+}
+
+.ButtonLoad:active {
+    box-shadow: 1px 1px 0px $greyD, 2px 2px 0px $greyD, 3px 3px 0px $greyD;
 }

@@ -13,7 +13,7 @@ export default class Tgl extends React.Component {
     }
 
     componentDidMount() {
-        setInterval(this.fetchData, 1000);
+        setInterval(this.fetchData, 5000);
     }
 
     fetchData() {

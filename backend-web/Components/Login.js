@@ -9,6 +9,14 @@ export default class Login extends React.Component{
             LoggedIn : false
         }
         this.handleClick = this.handleClick.bind(this);
+        this.handleKey = this.handleKey.bind(this);
+    }
+
+    componentDidMount(){
+        window.addEventListener('keypress', this.handleKey);
+    }
+
+    handleKey(event){
     }
 
     handleClick(){
@@ -22,8 +30,12 @@ export default class Login extends React.Component{
         }else{
             fetch(`/api/Login/${UName}/${Pass}`)
             .then(
+                (res) => res.json()
+            )
+            .then(
                 (res) => {
-                    if(res.status == 200){
+                    console.log(res.login);
+                    if(res.login){
                         this.setState({
                             LoggedIn : true
                         });
@@ -31,6 +43,10 @@ export default class Login extends React.Component{
                         this.setState({
                             error : res.body['error']
                         });
+                    }else {
+                        this.setState({
+                            error : "Incorrect login credentials."
+                        })
                     }
                 }
             )
