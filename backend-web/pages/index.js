@@ -37,15 +37,8 @@ export default function Home() {
                     <li>Lights</li>
                 </ul>
         </Intro>
-        <Button sensID={4}>Security System</Button>
-        <div>
-          <Tgl sensID={4} api={'Request/jobs'} initState={false}>Security System</Tgl>
-          {/* <Tgl initState={true}>Ben is a big dumb idiot</Tgl> */}
-          {/* <Tgl>BabaBooey</Tgl> */}
-        </div>
-        {/* <Graph xTag={"Requests/Data"} MCDat={"Requests/MCList"} /> */}
+        <Login />
       </div>
-      <Login />
     </div>
   )
 }

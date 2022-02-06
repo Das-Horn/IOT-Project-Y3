@@ -10,10 +10,11 @@ export default class Tgl extends React.Component {
             loaded : false
         }
         this.fetchData = this.fetchData.bind(this);
+        this.myInterval;
     }
 
     componentDidMount() {
-        setInterval(this.fetchData, 5000);
+        this.myInterval = setInterval(this.fetchData, 5000);
     }
 
     fetchData() {
@@ -39,6 +40,10 @@ export default class Tgl extends React.Component {
             console.log(res);
         })
         // .finally(() => this.forceUpdate())
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.myInterval)
     }
 
     parseData(res){

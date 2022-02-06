@@ -23,6 +23,11 @@ export default class Login extends React.Component{
         const UName = document.querySelector('#UName').value;
         const Pass = document.querySelector('#Pass').value;
 
+        //Set session values for further auth
+
+        window.sessionStorage.setItem('UName', UName);
+        window.sessionStorage.setItem('Pass', Pass);
+
         if(UName == '' || Pass == ''){
             this.setState({
                 error : "Please enter valid values."
