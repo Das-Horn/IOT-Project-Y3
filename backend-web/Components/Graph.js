@@ -8,7 +8,8 @@ class Graph extends React.Component{
         this.state = {
             data : null,
             names : null,
-            counter : 0
+            counter : 0,
+            category : 'Temp'
         };
         this.x;
         this.line;
@@ -58,7 +59,7 @@ class Graph extends React.Component{
     render(){
         return(
             <div className={styles.GraphMainCont}>
-                <select id={"selectButton"}></select>
+                <select className={styles.input} id={"selectButton"}></select>
                 <div id={"Graph"} className={styles.GraphSubCont}>
 
                 </div>

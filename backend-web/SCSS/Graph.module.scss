@@ -9,3 +9,12 @@
 .GraphSubCont{
     @extend .GraphMainCont;
 }
+
+.input{
+    border-radius: 5px;
+    border: none;
+    background-color: $accent-color;
+    color: white;
+    padding: 5px;
+    outline: none;
+}
