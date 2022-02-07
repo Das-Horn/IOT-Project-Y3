@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient();
 
 export default async function handler(req,res){
-    const prisma = new PrismaClient();
 
     const results = await prisma.sensorData.findMany({
         orderBy : {
@@ -10,6 +10,6 @@ export default async function handler(req,res){
         },
         take : 100,
     })
-
+    prisma.$disconnect()
     res.status(200).json(results);
 }

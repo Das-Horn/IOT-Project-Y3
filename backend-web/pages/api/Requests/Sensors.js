@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient();
 
 export default async function handler(req,res){
-    const prisma = new PrismaClient();
     const results = await prisma.connected_Sensors.findMany();
     res.status(200).json(results); //send results
 }
