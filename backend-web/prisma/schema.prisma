@@ -12,6 +12,7 @@ model Jobs {
   MC                Int
   Action            Boolean
   SensorID          Int               @unique(map: "SensorID")
+  readOnly          Boolean           @default(false)
   MC_identities     MC_identities     @relation(fields: [MC], references: [MCKey], onUpdate: Restrict, map: "Jobs_fk0")
   connected_Sensors connected_Sensors @relation(fields: [SensorID], references: [SensorID], onUpdate: Restrict, map: "Jobs_fk1")
 
@@ -37,8 +38,8 @@ model MC_identities {
   @@map("MC identities")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model MCEntries {
+  MCEKey        Int
   MC            Int
   TotalEntries  Int           @default(0)
   LastEntry     DateTime      @default(now()) @db.Time(0)
