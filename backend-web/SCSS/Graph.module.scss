@@ -1,6 +1,11 @@
 @import "variables.scss";
 
 
-.Graph{
-    background-color: aqua;
+.GraphMainCont{
+    width: max-content !important;
+    height: max-content !important;
+}
+
+.GraphSubCont{
+    @extend .GraphMainCont;
 }

@@ -8,6 +8,20 @@
     left: 0;
 }
 
+.Done{
+    @extend .stats;
+    display:flex;
+    div{
+        width:50%;
+        height:100%;
+        div{
+            width:max-content;
+            height: fit-content;
+            margin:10px;
+        }
+    }
+}
+
 .Loading {
     @extend .stats;
     display: flex;
