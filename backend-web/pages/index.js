@@ -5,6 +5,7 @@ import Button from '../Components/Button'
 import Tgl from '../Components/ToggleInd'
 import Graph from '../Components/Graph'
 import Login from '../Components/Login'
+import HomePage from '../Components/HomePage'
 
 export default function Home() {
   return (

@@ -67,7 +67,6 @@ void loop()                     // Start of the void loop().
         if (doc[0]["Action"] == true)
         {
           activeSec = true;
-          ultraState = HIGH;             // Sets the pirState to LOW.
           Serial.print("[LOCAL] Security is active \n");  // Prints out that the Security has been turned on.
         }
         else  // Else statement for when the Security is turned off.
@@ -90,20 +89,18 @@ void loop()                     // Start of the void loop().
     {
       Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
     }
-    value = digitalRead(ultraState);  // Value is equal to the digital read of the Ultrasonic Sensor.
+    value = distance;  // Value is equal to the digital read of the Ultrasonic Sensor.
     if (activeSec == true)            // If statement for when the security is activated.
     {
-      if (value < 20)                 // If statement for when the value is HIGH.
+      if (value <= 25)                // If statement for when the value is HIGH.
       {
         ultraState = HIGH;            // Sets the pirState to HIGH.
       }
       Serial.println(value);
-      if (ultraState == HIGH)         // If statement for when the pirState is HIGH.
-      {
-        digitalWrite(ledPin, HIGH);         // Sets the led on a HIGH state meaning it's turned on.
-        digitalWrite(buzzerPin, HIGH);      // Sets the buzzer on a HIGH state meaning it's turned on.
-        Serial.println("Motion detected!"); // Prints out a statement saying "Motion detected!".
-      } // Ends the if (pirState == HIGH) statement.
+      Serial.println(ultraState);
+      digitalWrite(ledPin, ultraState);         // Sets the led on a HIGH state meaning it's turned on.
+      digitalWrite(buzzerPin, ultraState);      // Sets the buzzer on a HIGH state meaning it's turned on.
+      Serial.println("Motion detected!"); // Prints out a statement saying "Motion detected!".
     } // Ends the if (activeSec == true) statement.
     http.end(); // HTTP has ended.
   } // Ends the if((wifiMulti.run() == WL_CONNECTED)) statement.
