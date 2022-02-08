@@ -1,17 +1,22 @@
 @import "variables.scss";
 
-.Card{
-    width:66%;
+.Card {
+    width: 100%;
     background-color: $card-background-col;
     box-shadow: 2px 2px 3px rgb(216, 216, 216);
-    height:auto;
+    height: auto;
     border-radius: 10px;
-    margin-top:5px;
-    padding:5px;
+    margin-top: 5px;
+    padding: 5px;
     transition: all $animation-speed ease-in-out; //add easy transition animations
-    li{
-        color:rgb(36, 36, 36);
+    li {
+        color: rgb(36, 36, 36);
         font-weight: 600;
+    }
+
+    .centerText {
+        text-align: center;
+        white-space: nowrap;
     }
 }
 
