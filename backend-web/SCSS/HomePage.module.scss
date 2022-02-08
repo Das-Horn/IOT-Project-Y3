@@ -10,26 +10,16 @@
 }
 
 .Done {
-    @extend .stats;
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 44% 100px 100px;
-    grid-template-columns: repeat(6, auto);
-    grid-auto-flow: row;
-    row-gap: 15px;
+    width: 100%;
+    height: 100%;
+    // display: grid;
+    // grid-template-rows: 44% 100px 100px;
+    // grid-template-columns: repeat(6, auto);
+    // grid-auto-flow: row;
+    // grid-row-gap: 15px;
+    // row-gap: 15px;
     padding: 0;
-    box-sizing: border-box;
-    /*    display:flex;
-    div{
-        width:50%;
-        height:100%;
-        div{
-            width:max-content;
-            height: fit-content;
-            margin:10px;
-        }
-    }*/
+    // box-sizing: border-box;
 }
 
 .Loading {
@@ -43,25 +33,32 @@
 }
 
 .graphCont {
-    grid-column-start: 3;
-    grid-column-end: 6;
-    grid-row: 1/ 2;
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .buttonCont {
-    grid-row-start: 2;
-    grid-row-end: auto;
-    grid-column-start: auto;
-    grid-column-end: auto;
-    height: 125px;
+    /* top: 50%; */
+    height: 50%;
+    left: 18%;
+    width: 66%;
     display: flex;
-    align-content: center;
+    position: absolute;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
     justify-content: center;
     align-items: center;
+    transition: all 0.2s ease-in-out;
 }
 
 @media (max-width: $phoneScreen) {
-    .Done {
-        grid-template-columns: repeat(1, 1fr);
+    .buttonCont{
+        width:100%;
+        left:0;
     }
 }

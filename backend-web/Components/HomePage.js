@@ -49,9 +49,9 @@ export default class HomePage extends React.Component {
                     Name = Sen[i].Sensors;
                     console.log(Name);
                     if(ButtonVal.readOnly == false){
-                        TempArray.push(<div className={styles.buttonCont}><Button key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Button></div>);
+                        TempArray.push(<Button key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Button>);
                     }else{
-                        TempArray.push(<div className={styles.buttonCont}><Tgl key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Tgl></div>);
+                        TempArray.push(<Tgl key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Tgl>);
                     }
                     break;
                 }
@@ -76,10 +76,12 @@ export default class HomePage extends React.Component {
                     <div className={styles.graphCont}>
                         <Intro>
                             <Graph MCDat="Requests/MCList" xTag="Requests/Data/Temp"/>
-                            <p className={styles.centerText}>Above is a simple graph to show tempature over time. The graph can<br /> differentiate between multiple devices and select data relating to that device.</p>
+                            <p className={styles.centerText}>Above is a simple graph to show tempature over time. The graph can differentiate between multiple devices and select data relating to that device.</p>
                         </Intro>
                     </div>
-                    {this.state.LoadingButton ? <div className={styles.ripple}><div>    </div><div> </div></div> : this.state.Buttons}
+                    <div className={styles.buttonCont}>
+                        {this.state.LoadingButton ? <div className={styles.ripple}><div>    </div><div> </div></div> : this.state.Buttons}
+                    </div>
                 </div>
             );
         }
