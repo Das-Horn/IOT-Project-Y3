@@ -76,7 +76,7 @@ export default class HomePage extends React.Component {
                     <div className={styles.graphCont}>
                         <Intro>
                             <Graph MCDat="Requests/MCList" xTag="Requests/Data/Temp"/>
-                            <p>Above is a simple graph to show tempature over time. The graph can<br /> differentiate between multiple devices and select data relating to that device.</p>
+                            <p className={styles.centerText}>Above is a simple graph to show tempature over time. The graph can<br /> differentiate between multiple devices and select data relating to that device.</p>
                         </Intro>
                     </div>
                     {this.state.LoadingButton ? <div className={styles.ripple}><div>    </div><div> </div></div> : this.state.Buttons}
