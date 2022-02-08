@@ -60,7 +60,7 @@
     align-items: center;
 }
 
-@media (min-width: $phoneScreen) {
+@media (max-width: $phoneScreen) {
     .Done {
         grid-template-columns: repeat(1, 1fr);
     }
