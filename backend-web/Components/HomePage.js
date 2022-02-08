@@ -3,6 +3,7 @@ import styles from "../SCSS/HomePage.module.scss";
 import Graph from "./Graph";
 import Intro from "./Intro";
 import Button from "./Button";
+import Tgl from "./ToggleInd";
 
 
 export default class HomePage extends React.Component {
@@ -47,7 +48,11 @@ export default class HomePage extends React.Component {
                 if(ButtonVal.SensorID === Sensor.SensorID){
                     Name = Sen[i].Sensors;
                     console.log(Name);
-                    TempArray.push(<Button key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Button>)
+                    if(ButtonVal.readOnly == false){
+                        TempArray.push(<div className={styles.buttonCont}><Button key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Button></div>);
+                    }else{
+                        TempArray.push(<div className={styles.buttonCont}><Tgl key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Tgl></div>);
+                    }
                     break;
                 }
             }
@@ -68,15 +73,13 @@ export default class HomePage extends React.Component {
         }else{
             return(
                 <div className={styles.Done}>
-                    <div>
+                    <div className={styles.graphCont}>
                         <Intro>
                             <Graph MCDat="Requests/MCList" xTag="Requests/Data/Temp"/>
                             <p>Above is a simple graph to show tempature over time. The graph can<br /> differentiate between multiple devices and select data relating to that device.</p>
                         </Intro>
                     </div>
-                    <div className={styles.ButtonComp}>
-                        {this.state.LoadingButton ? <div className={styles.ripple}><div>    </div><div> </div></div> : this.state.Buttons}
-                    </div>
+                    {this.state.LoadingButton ? <div className={styles.ripple}><div>    </div><div> </div></div> : this.state.Buttons}
                 </div>
             );
         }

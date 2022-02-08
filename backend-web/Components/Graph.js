@@ -40,6 +40,8 @@ class Graph extends React.Component{
             let selectedGroup = document.querySelector('#selectButton').value
             this.updateChart(selectedGroup)
         });
+
+        // Create
     }
 
     getData() {
@@ -71,8 +73,8 @@ class Graph extends React.Component{
         console.log(`Begining Graph generation.`);
         // set the dimensions and margins of the graph
         const margin = {top: 30, right: 30, bottom: 30, left: 50},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        width = 350 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
         const svg = d3.select("#Graph")
