@@ -30,16 +30,17 @@ model MC_identities {
   MCKey             Int                 @id @unique(map: "MCKey") @default(autoincrement())
   MCIP              String              @unique(map: "MCIP") @db.VarChar(255)
   Jobs              Jobs[]
-  MCEntries         MCEntries[]         @relation("MC_identitiesToMCEntries") @ignore
+  MCEntries         MCEntries[]         @relation("MC_identitiesToMCEntries")
   SensorData        SensorData[]
   connected_Sensors connected_Sensors[]
 
+  @@index([MCIP], map: "MCIP_2")
   @@index([MCName], map: "MCName")
   @@map("MC identities")
 }
 
 model MCEntries {
-  MCEKey        Int
+  MCEKey        Int           @id
   MC            Int
   TotalEntries  Int           @default(0)
   LastEntry     DateTime      @default(now()) @db.Time(0)
@@ -47,7 +48,6 @@ model MCEntries {
   MC_identities MC_identities @relation("MC_identitiesToMCEntries", fields: [MC], references: [MCKey], onUpdate: Restrict, map: "MCEntries_fk0")
 
   @@index([MC], map: "MCEntries_fk0")
-  @@ignore
 }
 
 model Rooms {
