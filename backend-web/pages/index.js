@@ -42,8 +42,8 @@ export default function Home() {
                   <a>Stats Page</a>
                 </Link>
         </Intro>
-        <Login />
       </div>
+        <Login />
     </div>
   )
 }
