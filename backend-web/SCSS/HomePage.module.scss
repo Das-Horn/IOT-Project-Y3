@@ -12,9 +12,9 @@
     @extend .stats;
     width: 100vw;
     height: 100vh;
-    display: grid;
+    display: grid !important;
     grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
     padding: 10px;
     box-sizing: border-box;
