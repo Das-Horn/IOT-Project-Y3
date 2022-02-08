@@ -11,7 +11,7 @@ body {
     display: flex;
     position: absolute;
     width: 100%;
-    height: calc(100% - 50px);
+    height: calc(100vh - 50px);
     top: 50px;
     left: 0;
     flex-direction: column;
