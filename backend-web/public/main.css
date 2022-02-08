@@ -3,6 +3,10 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    overflow: hidden;
+}
+
 .contents {
     display: flex;
     position: absolute;
