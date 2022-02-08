@@ -6,6 +6,7 @@ import Tgl from '../Components/ToggleInd'
 import Graph from '../Components/Graph'
 import Login from '../Components/Login'
 import HomePage from '../Components/HomePage'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -37,6 +38,9 @@ export default function Home() {
                     <li>Oven Tempature</li>
                     <li>Lights</li>
                 </ul>
+                <Link href="/Home">
+                  <a>Stats Page</a>
+                </Link>
         </Intro>
         <Login />
       </div>
