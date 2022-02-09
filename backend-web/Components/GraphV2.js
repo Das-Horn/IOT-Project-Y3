@@ -4,6 +4,7 @@ import Chart from 'chart.js/auto';
 import 'chartjs-adapter-luxon';
 import * as Utils from './Scripts/Utils';
 import {DateTime} from 'luxon';
+import { v4 as uuidv4 } from 'uuid';
 
 class Graph extends React.Component{
     constructor(props){
@@ -25,6 +26,7 @@ class Graph extends React.Component{
     async componentDidMount(){
         await this.getData();
         this.createChart();
+        this.myInterval = setInterval(this.updateChart, 10000);
     }
 
     async getData(){ // A method to gather the types of data needed
@@ -140,7 +142,7 @@ class Graph extends React.Component{
         let Buffer = [];
         for (let i = 0; i < this.state.names.length; i++) {
             const Data = [this.state.names[i].MCName, this.state.names[i].MCKey];
-            Buffer.push(<option key={new Date().valueOf()} value={Data[1]}>{Data[0]}</option>);
+            Buffer.push(<option key={uuidv4()} value={Data[1]}>{Data[0]}</option>);
         }
         this.setState({
             nameList : Buffer
@@ -171,7 +173,8 @@ class Graph extends React.Component{
 
     componentWillUnmount(){
           clearInterval(this.myInterval);
-        }
+    }
+
     //Render Method
     render(){
         return(

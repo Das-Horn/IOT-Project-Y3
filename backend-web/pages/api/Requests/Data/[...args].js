@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 export default async function handler(req,res){
     const args = req.query['args'];
     let results;
-    console.log(args);
 
     if(args.length == 1){
         results = await prisma.sensorData.findMany({
@@ -31,6 +30,5 @@ export default async function handler(req,res){
             take : 100,
         })
     }
-    console.log(results);
     res.status(200).json(results);
 }

@@ -5,6 +5,8 @@ import Intro from "./Intro";
 import Button from "./Button";
 import Tgl from "./ToggleInd";
 
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default class HomePage extends React.Component {
     constructor(props){
@@ -49,9 +51,9 @@ export default class HomePage extends React.Component {
                     Name = Sen[i].Sensors;
                     console.log(Name);
                     if(ButtonVal.readOnly == false){
-                        TempArray.push(<Button key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Button>);
+                        TempArray.push(<Button key={uuidv4()} sensID={ButtonVal.SensorID}>{Name}</Button>);
                     }else{
-                        TempArray.push(<Tgl key={new Date().valueOf()} sensID={ButtonVal.SensorID}>{Name}</Tgl>);
+                        TempArray.push(<Tgl key={uuidv4()} sensID={ButtonVal.SensorID}>{Name}</Tgl>);
                     }
                     break;
                 }
