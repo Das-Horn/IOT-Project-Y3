@@ -14,10 +14,10 @@ class Graph extends React.Component{
             Humidata : null,
             names : null,
             nameList : null,
-            MC : 1,
             updates : 0
         };
         this.myInterval;
+        this.MC = '1';
         this.TempGraph;
         this.changeMC = this.changeMC.bind(this);
         this.updateChart = this.updateChart.bind(this);
@@ -31,7 +31,7 @@ class Graph extends React.Component{
 
     async getData(){ // A method to gather the types of data needed
         let Names; // gotta define this here due to some problems
-        const MC = this.state.MC;
+        const MC = this.MC;
         const Temp = await fetch(`/api/Requests/Data/Temp/${MC}`).then(
             (res) => res.json()
         ).then(
@@ -152,15 +152,13 @@ class Graph extends React.Component{
 
     changeMC(){
         const val = document.querySelector('#selectButton').value;
-        console.log(`testing value : ${val}`);
-        this.setState({
-            MC : val
-        });
+        this.MC = val;
+        console.log(this.MC);
         this.updateChart();
     }
 
-    updateChart(){
-        this.getData();
+    async updateChart(){
+        await this.getData();
 
         this.TempGraph.data.datasets[0].data = this.state.Tempdata;
         this.TempGraph.data.datasets[1].data = this.state.Humidata;

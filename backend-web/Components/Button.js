@@ -26,7 +26,6 @@ export default class Button extends React.Component{
                 (res) => {
                     for (let i = 0; i < res.length; i++) {
                         if (res[i]['SensorID'] == this.state.sensID) {
-                            console.log(`${res[i]['Action']} || ${this.props.sensID}`);
                             this.setState({
                                 color: res[i]['Action'],
                                 loaded: true
