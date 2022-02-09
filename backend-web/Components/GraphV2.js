@@ -13,10 +13,13 @@ class Graph extends React.Component{
             Humidata : null,
             names : null,
             nameList : null,
-            MC : 1
+            MC : 1,
+            updates : 0
         };
         this.myInterval;
         this.TempGraph;
+        this.changeMC = this.changeMC.bind(this);
+        this.updateChart = this.updateChart.bind(this);
     }
 
     async componentDidMount(){
@@ -25,7 +28,9 @@ class Graph extends React.Component{
     }
 
     async getData(){ // A method to gather the types of data needed
-        const Temp = await fetch('/api/Requests/Data/Temp').then(
+        let Names; // gotta define this here due to some problems
+        const MC = this.state.MC;
+        const Temp = await fetch(`/api/Requests/Data/Temp/${MC}`).then(
             (res) => res.json()
         ).then(
             (res) => {
@@ -39,7 +44,7 @@ class Graph extends React.Component{
             }
         );
 
-        const Humid = await fetch('/api/Requests/Data/Humid').then(
+        const Humid = await fetch(`/api/Requests/Data/Humid/${MC}`).then(
             (res) => res.json()
         ).then(
             (res) => {
@@ -52,18 +57,22 @@ class Graph extends React.Component{
                 return mapped
             }
         );
-
-        const Names = await fetch('/api/Requests/MCList').then(
-            (res) => res.json()
-        );
-
+        if(this.state.nameList === null){
+            Names = await fetch('/api/Requests/MCList').then(
+                (res) => res.json()
+            );
+        }
+        // console.log('\n\n\n\n\n\n\n\n\n\n\n');
+        // console.log(Temp);
+        // console.log('\n\n\n\n\n\n\n\n\n\n\n');
         this.setState({
             Tempdata : Temp,
             Humidata : Humid,
             names : Names
         })
-        
-        this.createMCList();
+        if(this.state.nameList === null){
+            this.createMCList();
+        }
     }
 
     createChart(){ // Create graph chart
@@ -139,6 +148,27 @@ class Graph extends React.Component{
         console.log(Buffer);
     }
 
+    changeMC(){
+        const val = document.querySelector('#selectButton').value;
+        console.log(`testing value : ${val}`);
+        this.setState({
+            MC : val
+        });
+        this.updateChart();
+    }
+
+    updateChart(){
+        this.getData();
+
+        this.TempGraph.data.datasets[0].data = this.state.Tempdata;
+        this.TempGraph.data.datasets[1].data = this.state.Humidata;
+
+        this.TempGraph.update();
+        this.setState({
+            updates : this.state.updates + 1
+        });
+    }
+
     componentWillUnmount(){
           clearInterval(this.myInterval);
         }
@@ -146,7 +176,7 @@ class Graph extends React.Component{
     render(){
         return(
             <div className={styles.GraphMainCont}>
-                <select className={styles.input} id={"selectButton"}>
+                <select className={styles.input} id={"selectButton"} onChange={this.changeMC}>
                     {this.state.nameList ? this.state.nameList : <option>loading...</option>}
                 </select>
                 <div className={styles.GraphSubCont}>
