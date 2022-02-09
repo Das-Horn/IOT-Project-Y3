@@ -75,7 +75,9 @@ export default class HomePage extends React.Component {
                 <div className={styles.Done}>
                     <div className={styles.graphCont}>
                         <Intro>
-                            <Graph MCDat="Requests/MCList" xTag="Requests/Data/Temp"/>
+                            <div className={styles.centerGraph}>
+                                <Graph MCDat="Requests/MCList" xTag="Requests/Data/Temp"/>
+                            </div>
                             <p className="centerText">Above is a simple graph to show tempature over time. The graph can differentiate between multiple devices and select data relating to that device.</p>
                         </Intro>
                     </div>

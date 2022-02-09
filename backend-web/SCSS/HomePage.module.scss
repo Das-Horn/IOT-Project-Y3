@@ -36,7 +36,7 @@
 
 .buttonCont {
     /* top: 50%; */
-    height: 50%;
+    height: max-content;
     left: 18%;
     width: 66%;
     display: flex;
@@ -48,6 +48,13 @@
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
+}
+
+.centerGraph{
+    height:max-content;
+    width:100%;
+    display:flex;
+    justify-content: center;
 }
 
 @media (max-width: $phoneScreen) {

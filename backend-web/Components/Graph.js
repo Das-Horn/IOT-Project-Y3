@@ -184,7 +184,7 @@ class Graph extends React.Component{
           .attr("d", d3.line()
             .x((d) => { return this.x(this.getMinute(d.TimeStamp)) })
             .y((d) => { return this.y(+d.Data) })
-            .curve(d3.curveBasis)
+            .curve(d3.curveLinear) // Line interpolation
           )
           .attr("stroke", (d) =>{ return this.myColor(selectedGroup) })
         //   .style("fill", (d) =>{ return this.myColor(selectedGroup) })

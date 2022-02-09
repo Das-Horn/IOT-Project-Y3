@@ -14,6 +14,7 @@ export default function Home() {
         <link rel="image/png" href='/icons/icon_512x512.png' />
         <meta name='theme-color' content='#61A6AB'/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+        <link rel="apple-touch-icon" href="/icons/Final/maskable_icon_x192.png"></link>
       </Head>
       <Header />
       <div className='contents'>
