@@ -50,6 +50,13 @@
     transition: all 0.2s ease-in-out;
 }
 
+.centerGraph{
+    height:max-content;
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+
 @media (max-width: $phoneScreen) {
     .buttonCont{
         width:100%;
