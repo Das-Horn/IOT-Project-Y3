@@ -7,8 +7,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@kurkle/color": "^0.1.9",
     "@prisma/client": "^3.9.1",
+    "chart.js": "^3.7.0",
+    "chartjs-adapter-luxon": "^1.1.0",
     "d3": "^7.3.0",
+    "luxon": "^2.3.0",
     "next": "latest",
     "next-pwa": "^5.4.4",
     "node": "14.18.3",

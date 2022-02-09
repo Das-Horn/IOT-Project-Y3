@@ -2,12 +2,15 @@
 
 
 .GraphMainCont{
-    width: max-content !important;
+    width: 100%;
     height: max-content !important;
 }
 
 .GraphSubCont{
     @extend .GraphMainCont;
+    position: relative;
+    height:400px !important;
+    width: 100%;
 }
 
 .input{

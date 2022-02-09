@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../SCSS/HomePage.module.scss";
-import Graph from "./Graph";
+import Graph from "./GraphV2";
 import Intro from "./Intro";
 import Button from "./Button";
 import Tgl from "./ToggleInd";

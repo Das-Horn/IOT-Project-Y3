@@ -12,7 +12,7 @@ export default async function handler(req,res){
             DataType : args[0]
         },
         orderBy : {
-            DataKey : "desc"
+            TimeStamp : "desc"
         },
         take : 100,
     })

@@ -1,7 +1,10 @@
 import styles from '../SCSS/Graph.module.scss';
 import React from "react";
 import * as d3 from 'd3';
-
+// This code contains memory leaks and is therfore obsolete
+// It was taken from my (Craig Doyle) last IOT project and
+// adapted poorly to this one. Therefore this has been rewritten
+// in GraphV2.js, please use that instead.
 class Graph extends React.Component{
     constructor(props){
         super(props);
