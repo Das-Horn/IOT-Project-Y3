@@ -10,3 +10,9 @@ with open("/etc/nginx/sites-available/reverse-proxy.conf", "w") as f:
     }
     """
     f.writelines(config)
+
+with open('./nginx.conf' , "r") as f:
+        NewConfig = f.readlines()
+
+with open('/etc/nginx/nginx.conf' , "w") as f:
+        f.writelines(NewConfig)
